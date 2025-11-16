@@ -1,0 +1,1 @@
+print(sum(x**2 for x in range(868000) if x % 2 == 1))
