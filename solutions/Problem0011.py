@@ -24,5 +24,9 @@ import numpy as np
 nums = np.array([[int(y) for y in x.split(" ")] for x in dataString.split("\n")])
 
 # in this UGLY expression we find the max of checking the rows, collumns, descending diagonals, and ascending diagonals in order
-# i'm keeping it as a one-liner because im cool like that 
+# i'm keeping it as a one-liner because im cool like that
+# check the rows: max(max(np.prod(nums[:,x:x+4], axis=1)) for x in range(20 - 4))
+# check the collumns: max(max(np.prod(nums[x:x+4,:], axis=0)) for x in range(20 - 4))
+# check the descending diagonals: max(np.prod(np.diagonal(nums,offset=x)[y:y+4]) for x in range(-16,17) for y in range(0,20-4-abs(x)))
+# check the ascending diagonals: max(np.prod(np.diagonal(np.rot90(nums),offset=x)[y:y+4]) for x in range(-16,17) for y in range(0,20-4-abs(x))))
 print(max(max(max(np.prod(nums[:,x:x+4], axis=1)) for x in range(20 - 4)),max(max(np.prod(nums[x:x+4,:], axis=0)) for x in range(20 - 4)),max(np.prod(np.diagonal(nums,offset=x)[y:y+4]) for x in range(-16,17) for y in range(0,20-4-abs(x))),max(np.prod(np.diagonal(np.rot90(nums),offset=x)[y:y+4]) for x in range(-16,17) for y in range(0,20-4-abs(x)))))
